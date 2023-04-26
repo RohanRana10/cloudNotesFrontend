@@ -1,0 +1,67 @@
+.heading{
+    font-family: 'Lobster Two', cursive;
+    /* font-size: rem; */
+    color: maroon;
+    margin-top: 100px;
+}
+
+.button{
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+}
+
+.button:hover{
+    color: white;   
+}
+
+.loginImage{
+    height: 500px;
+    margin-left: 100px;
+}
+
+.imageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    margin-top: -50px;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px;
+    height: 500px;
+}
+
+@media screen and (max-width: 995px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+
+    .loginForm{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80vw;
+        height: auto;
+    }
+
+    .loginImage{
+        height: 40vh;
+        margin: auto;
+    }
+
+    .heading{
+        font-family: 'Lobster Two', cursive;
+        /* font-size: rem; */
+        color: maroon;
+        margin-top: 50px;
+    }
+}

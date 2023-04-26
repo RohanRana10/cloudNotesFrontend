@@ -1,0 +1,35 @@
+.card_title{
+    color: maroon;
+    font-family: 'Dancing Script', cursive;
+    font-size: 23px;
+    margin-right: 60px;
+    margin-top: 30px;
+}
+
+.cornerBoxTop{
+    padding: 5px 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 3px;
+    background-color: #ff6917;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+.cornerBoxBottom{
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 3px;
+    background-color: #FFBF00;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+.cardText{
+    font-family: 'Roboto', sans-serif;
+}
