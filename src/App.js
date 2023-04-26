@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from './context/notes/NoteState';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
 import toast, { Toaster } from 'react-hot-toast';
 import Signup from './components/Signup';
 import Login from './components/Login';
