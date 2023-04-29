@@ -3,15 +3,19 @@ import noteContext from '../context/notes/noteContext';
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner';
 
 const Notes = (props) => {
+    const [loading, setLoading] = useState(false);
     let navigate = useNavigate();
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" });
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
         if (localStorage.getItem('token')) {
+            setLoading(true);
             getNotes();
+            setLoading(false);
         }
         else {
             navigate("/login");
@@ -105,6 +109,7 @@ const Notes = (props) => {
                     color: 'maroon',
                     fontSize: "50px"
                 }}>Your Notes</h2>
+                {loading && <Spinner/>}
                 <div className="container">
                     {notes.length === 0 && 'No notes to display'}
                 </div>

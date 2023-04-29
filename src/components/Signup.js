@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from '../components/css/signup.module.css'
+import Spinner from './Spinner';
 
 const Signup = (props) => {
 
+    const [loading, setLoading] = useState(false);
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
 
     useEffect(() => {
@@ -18,6 +20,7 @@ const Signup = (props) => {
 
         // let url = "http://localhost:5000/api/auth/createuser";
         let url = `${host}/api/auth/createuser`;
+        setLoading(true);
         let { name, password, email, cpassword } = credentials;
         if(password === cpassword){
             const response = await fetch(url, {
@@ -32,14 +35,17 @@ const Signup = (props) => {
             if (json.success) {
                 //save the auth token and redirect
                 localStorage.setItem('token', json.authToken);
+                setLoading(false);
                 navigate("/");
                 props.showAlert("Account Created Successfully!", "success");
             }
             else {
+                setLoading(false);
                 props.showAlert("Invalid Credentials!", "danger");
             }
         }
         else{
+            setLoading(false);
             props.showAlert("Passwords do not match!", "danger");
         }
     }
@@ -51,6 +57,7 @@ const Signup = (props) => {
     return (
         <div className='container mt-4'>
             <h2 className={`mt-5 ${styles.heading}`}>Sign up to CloudNotes</h2>
+            {loading && <Spinner/>}
             <div className={styles.container}>
                 <div className={styles.signupForm}>
                     <form onSubmit={handleSubmit}>
