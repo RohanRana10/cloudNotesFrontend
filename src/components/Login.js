@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../components/css/login.module.css'
+import Spinner from './Spinner';
 
 const Login = (props) => {
 
+    const [loading, setLoading] = useState(false);
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
 
     useEffect(() => {
@@ -18,6 +20,7 @@ const Login = (props) => {
 
         // let url = "http://localhost:5000/api/auth/login";
         let url = `${host}/api/auth/login`;
+        setLoading(true);
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -29,10 +32,13 @@ const Login = (props) => {
         if (json.success) {
             //save the auth token and redirect
             localStorage.setItem('token', json.authToken);
+            setLoading(false);
             props.showAlert("Logged in Successfully!", "success");
             navigate("/");
+            
         }
         else {
+            setLoading(false);
             props.showAlert("Invalid Credentials!", "danger");
         }
 
@@ -45,6 +51,7 @@ const Login = (props) => {
     return (
         <div className='container mt-4'>
             <h2 className={` ${styles.heading}`}>Login to continue to CloudNotes</h2>
+            {loading && <Spinner />}
             <div className={styles.container}>
                 <div className={styles.loginForm}>
                     <form onSubmit={handleSubmit}>

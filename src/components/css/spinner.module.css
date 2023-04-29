@@ -1,0 +1,9 @@
+.loader{
+    margin-left: 280px;
+}
+
+@media screen and (max-width: 995px) {
+    .loader{
+        margin-left: 32vw;
+    }
+}
