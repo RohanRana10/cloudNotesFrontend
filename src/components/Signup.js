@@ -9,6 +9,9 @@ const Signup = (props) => {
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
 
     useEffect(() => {
+        if(localStorage.getItem("token") !== null){
+            navigate("/");
+        }
         document.title = 'CloudNotes - Signup and Start Noting';
     }, []);
 

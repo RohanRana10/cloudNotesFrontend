@@ -8,7 +8,12 @@ const Login = (props) => {
     const [loading, setLoading] = useState(false);
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
 
+    
+
     useEffect(() => {
+        if(localStorage.getItem("token") !== null){
+            navigate("/");
+        }
         document.title = 'CloudNotes - Log In and Start Noting';
     }, []);
 
