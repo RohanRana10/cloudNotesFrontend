@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 const Signup = (props) => {
 
     const [loading, setLoading] = useState(false);
+    let navigate = useNavigate();
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const Signup = (props) => {
     }, []);
 
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
-    let navigate = useNavigate();
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

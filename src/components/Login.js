@@ -7,9 +7,8 @@ const Login = (props) => {
 
     const [loading, setLoading] = useState(false);
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
-
+    let navigate = useNavigate();
     
-
     useEffect(() => {
         if(localStorage.getItem("token") !== null){
             navigate("/");
@@ -18,8 +17,7 @@ const Login = (props) => {
     }, []);
 
     const [credentials, setCredentials] = useState({ email: "", password: "" });
-    let navigate = useNavigate();
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
