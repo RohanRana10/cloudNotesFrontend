@@ -14,6 +14,7 @@ const Signup = (props) => {
             navigate("/");
         }
         document.title = 'CloudNotes - Signup and Start Noting';
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
