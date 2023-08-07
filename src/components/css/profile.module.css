@@ -5,15 +5,19 @@
     margin-top: 100px;
 }
 
+.para{
+    font-family: 'Roboto';
+    font-size: 16px;
+}
+
 .button{
     font-family: 'Playfair Display', serif;
     font-size: 18px;
-    
-
+    margin-top: 20px;
 }
 
 .button:hover{
-    color: white;
+    color: white;   
 }
 
 .loginImage{
@@ -29,15 +33,15 @@
 
 .container{
     display: flex;
-    margin-top: -50px;
+    margin-top: 100px;
 }
 
-.loginForm{
+.updationForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 700px;
-    height: 500px;
+    height: 250px;
 }
 
 @media screen and (max-width: 995px) {

@@ -10,10 +10,11 @@ const Notes = (props) => {
     let navigate = useNavigate();
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" });
     const context = useContext(noteContext);
-    const { notes, getNotes, editNote } = context;
+    const { notes, getNotes, editNote, fetchUser } = context;
     useEffect(() => {
         if (localStorage.getItem('token')) {
             setLoading(true);
+            fetchUser();
             getNotes();
             setLoading(false);
         }

@@ -1,15 +1,23 @@
-import { React } from 'react'
+import { React, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from '../components/css/navbar.module.css'
+import noteContext from '../context/notes/noteContext'
 
 
 
 const Navbar = (props) => {
+    const context = useContext(noteContext);
+    const {user} = context;
+
     let navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate("/login");
         props.showAlert("Logged out successfully!", "success");
+    }
+
+    const getProfile = () => {
+        navigate("/profile");
     }
 
     let location = useLocation();
@@ -36,7 +44,11 @@ const Navbar = (props) => {
                     {!localStorage.getItem('token') ? <form className="d-flex" role="search">
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} to='/login' role="button">Log in</Link>
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} role="button" to='/Signup'>Sign up</Link>
-                    </form> : <button onClick={handleLogout} className={`btn btn-outline-warning ${styles.button}`}>Log out</button>}
+                    </form> : <div className='d-flex'>
+                        <button type="button" onClick={getProfile} className={`btn  mx-2 ${styles.button}`}>{user.name}</button>
+                        <button onClick={handleLogout} className={`btn btn-outline-warning ${styles.button}`}>Log out</button>
+                    </div> 
+                    }
                 </div>
             </div>
         </nav>

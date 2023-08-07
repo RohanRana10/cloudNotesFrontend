@@ -8,6 +8,32 @@ const NoteState = (props) => {
     const notesInitial = [];
 
     const [notes, setNotes] = useState(notesInitial);
+        const [user, setUser] = useState({});
+
+    //fetch user details
+    const fetchUser = async () => {
+        // let url = "http://localhost:5000/api/auth/getuser";
+        let url = `${host}/api/auth/getuser`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        console.log("fetchuser running")
+        let date = new Date(json.date);
+        let options = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
+        setUser({
+            name: json.name,
+            email: json.email,
+            date: date.toLocaleTimeString("en-us", options)
+        });
+    }
 
 
     //get all notes
@@ -95,7 +121,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+        <NoteContext.Provider value={{ notes, user, fetchUser, addNote, deleteNote, editNote, getNotes }}>
             {props.children}
         </NoteContext.Provider>
     )
