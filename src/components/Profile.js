@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import styles from '../components/css/profile.module.css'
-import Spinner from './Spinner';
 
 
 const Profile = (props) => {
