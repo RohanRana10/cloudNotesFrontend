@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 // import { useContext, useEffect } from 'react'
-// import noteContext from '../context/notes/noteContext'
+import noteContext from '../context/notes/noteContext'
 import styles from '../components/css/about.module.css'
 
 
 const About = () => {
-
+    const context = useContext(noteContext);
+    const {fetchUser} = context;
     useEffect(() => {
         document.title = 'CloudNotes - About Us';
+        fetchUser();
     }, []);
 
     return (

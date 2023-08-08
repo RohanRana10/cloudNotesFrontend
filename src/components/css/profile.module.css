@@ -14,6 +14,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 18px;
     margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 
 .button:hover{
@@ -51,7 +53,7 @@
         margin-top: 24px;
     }
 
-    .loginForm{
+    .updationForm{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -66,8 +68,8 @@
 
     .heading{
         font-family: 'Lobster Two', cursive;
-        /* font-size: rem; */
+        font-size: 33px;
         color: maroon;
-        margin-top: 50px;
+        margin-top: 30px;
     }
 }

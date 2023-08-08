@@ -45,8 +45,8 @@ const Navbar = (props) => {
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} to='/login' role="button">Log in</Link>
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} role="button" to='/Signup'>Sign up</Link>
                     </form> : <div className='d-flex'>
-                        <button type="button" onClick={getProfile} className={`btn  mx-2 ${styles.button}`}>{user.name}</button>
-                        <button onClick={handleLogout} className={`btn btn-outline-warning ${styles.button}`}>Log out</button>
+                        <button type="button" onClick={getProfile} className={`btn btn-outline-warning  ${styles.button}`}>{user.name}</button>
+                        <button onClick={handleLogout} className={`btn btn-outline-warning mx-2 ${styles.button}`}>Log out</button>
                     </div> 
                     }
                 </div>
