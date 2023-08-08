@@ -7,7 +7,7 @@ import noteContext from '../context/notes/noteContext'
 
 const Navbar = (props) => {
     const context = useContext(noteContext);
-    const { user, filterNotes, getNotes } = context;
+    const { user, filterNotes} = context;
     const [search, setSearch] = useState("");
     let navigate = useNavigate();
 
