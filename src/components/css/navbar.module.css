@@ -14,3 +14,19 @@
     font-family: 'Playfair Display', serif;
     color: #ffe494;
 }
+
+.searchForm{
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 995px) {
+
+    .rightSideNav{
+        flex-direction: column;
+    }
+
+    .searchForm{
+        margin: 5px 0px 20px 0px;
+    }
+
+}

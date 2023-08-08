@@ -1,4 +1,4 @@
-import { React, useContext } from 'react'
+import { React, useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from '../components/css/navbar.module.css'
 import noteContext from '../context/notes/noteContext'
@@ -7,9 +7,27 @@ import noteContext from '../context/notes/noteContext'
 
 const Navbar = (props) => {
     const context = useContext(noteContext);
-    const {user} = context;
-
+    const { user, filterNotes, getNotes } = context;
+    const [search, setSearch] = useState("");
     let navigate = useNavigate();
+
+    const onChange = (e) => {
+        setSearch(e.target.value);
+    }
+
+    // useEffect(() => {
+    //     if (search == "") {
+    //         getNotes();
+    //     }
+    //     filterNotes(search);
+    // }, [search]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log("submitted", search);
+        filterNotes(search);
+    }
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate("/login");
@@ -44,10 +62,18 @@ const Navbar = (props) => {
                     {!localStorage.getItem('token') ? <form className="d-flex" role="search">
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} to='/login' role="button">Log in</Link>
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} role="button" to='/Signup'>Sign up</Link>
-                    </form> : <div className='d-flex'>
+                    </form> : <div className={`d-flex ${styles.rightSideNav}`}>
+                        <form className={`d-flex ${location.pathname === "/" ? "" : "d-none"} ${styles.searchForm}`} role="search" onSubmit={handleSubmit}>
+                            <input className={`form-control me-2`} type="search" placeholder="Search Notes.." aria-label="Search" onChange={onChange} style={{
+                                fontFamily: 'Roboto',
+                            }} />
+                            <button className={`btn btn-outline-warning ${styles.button}`} type="submit">Search</button>
+                        </form>
+                        <div>
                         <button type="button" onClick={getProfile} className={`btn btn-outline-warning  ${styles.button}`}>{user.name}</button>
                         <button onClick={handleLogout} className={`btn btn-outline-warning mx-2 ${styles.button}`}>Log out</button>
-                    </div> 
+                        </div>
+                    </div>
                     }
                 </div>
             </div>
