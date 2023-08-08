@@ -10,6 +10,7 @@ const About = () => {
     useEffect(() => {
         document.title = 'CloudNotes - About Us';
         fetchUser();
+        // eslint-disable-next-line
     }, []);
 
     return (
