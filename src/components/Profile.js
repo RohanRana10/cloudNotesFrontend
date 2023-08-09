@@ -15,10 +15,10 @@ const Profile = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        updateUser(credentials.username, credentials.email);
+        updateUser(credentials.username, credentials.email, credentials.oldPassword, credentials.newPassword);
     }
 
-    const updateUser = async (username, email) => {
+    const updateUser = async (username, email, oldPassword, newPassword) => {
         // let url = "http://localhost:5000/api/auth/updateuser";
         let url = `${host}/api/auth/updateuser`;
         const response = await fetch(url, {
@@ -27,7 +27,7 @@ const Profile = (props) => {
                 "Content-Type": "application/json",
                 "auth-token": localStorage.getItem('token')
             },
-            body: JSON.stringify({ username: username, email: email })
+            body: JSON.stringify({ username: username, email: email, oldPassword: oldPassword, newPassword: newPassword})
         });
         const json = await response.json();
         console.log(json);
@@ -42,7 +42,9 @@ const Profile = (props) => {
 
     const [credentials, setCredentials] = useState({
         username: user.name,
-        email: user.email
+        email: user.email,
+        oldPassword: "",
+        newPassword: ""
     })
 
     const onChange = (e) => {
@@ -79,6 +81,25 @@ const Profile = (props) => {
                                     value={credentials.email} onChange={onChange} id="email" aria-describedby="emailHelp" required style={{
                                         fontFamily: 'Roboto',
                                     }} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="oldPassword" className="form-label" style={{
+                                    fontFamily: 'Roboto',
+                                    color: "#ff6917",
+                                }}>Old Password</label>
+                                <input type="password" required onChange={onChange} className="form-control" style={{
+                                    fontFamily: 'Roboto',
+                                }} id="oldPassword" value={credentials.oldPassword} name='oldPassword' />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="newPassword" className="form-label" style={{
+                                    fontFamily: 'Roboto',
+                                    color: "#ff6917",
+                                }}>New Password</label>
+                                <input type="password" minLength={5} required onChange={onChange} className="form-control" value={credentials.newPassword} id="newPassword" style={{
+                                    fontFamily: 'Roboto',
+                                }} name='newPassword' />
+                                <div id="emailHelp" className="form-text">Please re-enter your old password in case you wish not to change it.</div>
                             </div>
                             <button type="submit" className={`btn btn-warning ${styles.button}`}>Update Details</button>
                         </form>
