@@ -27,8 +27,10 @@ const Navbar = (props) => {
         e.preventDefault();
         // console.log("submitted", search);
         setLoading(true);
+        console.log("loading start");
         filterNotes(search);
         setLoading(false);
+        console.log("Loading End")
     }
 
     const handleLogout = () => {
