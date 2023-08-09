@@ -110,6 +110,7 @@ const NoteState = (props) => {
         const newNotes = tempNotes.filter((note) => {
             return note.title.toLowerCase().includes(word.toLowerCase()) || note.description.toLowerCase().includes(word.toLowerCase());
         })
+        console.log("filter notes complete");
         setNotes(newNotes);
     }
 
