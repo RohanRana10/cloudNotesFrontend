@@ -23,14 +23,14 @@ const Navbar = (props) => {
     //     filterNotes(search);
     // }, [search]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log("submitted", search);
         setLoading(true);
         console.log("loading start");
-        filterNotes(search);
+        await filterNotes(search);
         setLoading(false);
-        console.log("Loading End")
+        console.log("Loading End");
     }
 
     const handleLogout = () => {
