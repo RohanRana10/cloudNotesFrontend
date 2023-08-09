@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import styles from '../components/css/profile.module.css'
+import Spinner from './Spinner';
 
 
 const Profile = (props) => {
+    const [loading, setLoading] = useState(false);
     const context = useContext(noteContext);
     const { user, fetchUser } = context;
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
@@ -21,6 +23,7 @@ const Profile = (props) => {
     const updateUser = async (username, email, oldPassword, newPassword) => {
         // let url = "http://localhost:5000/api/auth/updateuser";
         let url = `${host}/api/auth/updateuser`;
+        setLoading(true);
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -33,10 +36,12 @@ const Profile = (props) => {
         console.log(json);
         fetchUser();
         if (json.success) {
+            setLoading(false);
             props.showAlert("Details Updated!", "success");
         }
         else {
-            props.showAlert("Unauthorised!", "danger");
+            setLoading(false);
+            props.showAlert("Authorization Error!", "danger");
         }
     }
 
@@ -57,9 +62,10 @@ const Profile = (props) => {
                 <div>
                     <div className=''>
                         <h1 className={` ${styles.heading} mb-4`}>User Profile</h1>
+                        {loading && <Spinner />}
                         <p className={styles.para}>Name : {user.name}</p>
                         <p className={styles.para}>Email Id: {user.email}</p>
-                        <p className={styles.para}>Last updated on: {user.date}</p>
+                        <p className={styles.para}>Joined on: {user.date}</p>
                     </div>
                     <div className={styles.updationForm}>
                         <form onSubmit={handleSubmit}>

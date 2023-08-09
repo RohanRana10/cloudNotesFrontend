@@ -2,8 +2,20 @@
     margin-left: 280px;
 }
 
+.searchLoader{
+    height: 35px;
+    width: 35px;
+    margin-right: 8px;
+}
+
 @media screen and (max-width: 995px) {
     .loader{
         margin-left: 32vw;
+    }
+
+    .searchLoader{
+        height: 35px;
+        width: 35px;
+        margin-bottom: 8px;
     }
 }

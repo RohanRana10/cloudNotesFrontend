@@ -2,7 +2,7 @@ import { React, useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from '../components/css/navbar.module.css'
 import noteContext from '../context/notes/noteContext'
-
+import SearchSpinner from './SearchSpinner'
 
 
 const Navbar = (props) => {
@@ -15,6 +15,7 @@ const Navbar = (props) => {
         setSearch(e.target.value);
     }
 
+    const [loading, setLoading] = useState(false);
     // useEffect(() => {
     //     if (search == "") {
     //         getNotes();
@@ -25,7 +26,9 @@ const Navbar = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("submitted", search);
+        setLoading(true);
         filterNotes(search);
+        setLoading(false);
     }
 
     const handleLogout = () => {
@@ -63,6 +66,7 @@ const Navbar = (props) => {
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} to='/login' role="button">Log in</Link>
                         <Link className={`btn btn-outline-warning mx-2 ${styles.button}`} role="button" to='/Signup'>Sign up</Link>
                     </form> : <div className={`d-flex ${styles.rightSideNav}`}>
+                        {loading && <SearchSpinner/>}
                         <form className={`d-flex ${location.pathname === "/" ? "" : "d-none"} ${styles.searchForm}`} role="search" onSubmit={handleSubmit}>
                             <input className={`form-control me-2`} type="search" placeholder="Search Notes.." aria-label="Search" onChange={onChange} style={{
                                 fontFamily: 'Roboto',
