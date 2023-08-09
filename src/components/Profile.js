@@ -2,16 +2,23 @@ import React, { useContext, useEffect, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import styles from '../components/css/profile.module.css'
 import Spinner from './Spinner';
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = (props) => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const context = useContext(noteContext);
     const { user, fetchUser } = context;
     const host = "https://cloudnotesbackend-ttl6.onrender.com";
     useEffect(() => {
-        fetchUser();
-        document.title = 'CloudNotes - User Profile';
+        if (localStorage.getItem('token')) {
+            fetchUser();
+            document.title = 'CloudNotes - User Profile';
+        }
+        else {
+            navigate('/login');
+        }
         // eslint-disable-next-line
     }, [])
 
@@ -30,7 +37,7 @@ const Profile = (props) => {
                 "Content-Type": "application/json",
                 "auth-token": localStorage.getItem('token')
             },
-            body: JSON.stringify({ username: username, email: email, oldPassword: oldPassword, newPassword: newPassword})
+            body: JSON.stringify({ username: username, email: email, oldPassword: oldPassword, newPassword: newPassword })
         });
         const json = await response.json();
         console.log(json);
